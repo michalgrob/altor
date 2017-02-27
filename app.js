@@ -45,15 +45,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-console.log("Hey");
-
-fs.readdir(".", function (err, filenames) {
-    var i;
-    for (i = 0; i < filenames.length; i++) {
-        console.log(filenames[i]);
-    }
-});
-
-processId = process.cwd();
-console.log(processId);
