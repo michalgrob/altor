@@ -4,12 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 //maoriko
 var clientSignUp = require('./routes/clientSignUp');
+
+var configDB = require('./config/database.js');
+
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
 
 var app = express();
 
@@ -30,6 +36,7 @@ app.use('/users', users);
 
 //maoriko
 app.use('/clientSignUp', clientSignUp);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
