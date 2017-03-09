@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var session      = require('express-session');
+
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -31,11 +34,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
 app.use('/users', users);
 
 //maoriko
 app.use('/clientSignUp', clientSignUp);
+app.use('*', index);
+
+var flash = require('connect-flash');
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 // catch 404 and forward to error handler
