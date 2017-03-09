@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var session      = require('express-session');
+var session  = require('express-session');
 
 
 
@@ -14,7 +14,7 @@ var users = require('./routes/users');
 
 //maoriko
 var clientSignUp = require('./routes/clientSignUp');
-
+var login  = require('./routes/login');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', users);
 
 //maoriko
+app.use('/login', login);
 app.use('/clientSignUp', clientSignUp);
 app.use('*', index);
 
