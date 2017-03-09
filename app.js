@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+//maoriko
+var clientSignUp = require('./routes/clientSignUp');
+
 var app = express();
 
 // view engine setup
@@ -24,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+//maoriko
+app.use('/clientSignUp', clientSignUp);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
