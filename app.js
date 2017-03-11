@@ -1,3 +1,4 @@
+/// external modules
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,18 +8,26 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session  = require('express-session');
 
-
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-
-//maoriko
-var clientSignUp = require('./routes/clientSignUp');
-var login  = require('./routes/login');
-var configDB = require('./config/database.js');
-
+var router = express.Router();
+var passport = require('passport');
+var flash = require('connect-flash');
 // configuration ===============================================================
+router.use(passport.initialize());
+router.use(passport.session()); // persistent login sessions
+require('./config/passport')(passport); // pass passport for configuration
+var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
+
+/// our pages
+var index = require('./routes/index')(router, passport);
+var users = require('./routes/users')(router);
+var clientSignUp = require('./routes/clientSignUp')(router, passport);
+var login = require('./routes/login')(router, passport);
+
+/// every unknown page redirect to home
+router.get('/*', function (req, res, next) {
+    res.redirect('/index');
+});
 
 var app = express();
 
@@ -34,16 +43,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', users);
+app.use(session({
+    secret: 'ilovescotchscotchyscotchscotch', // session secret
+    resave: true,
+    saveUninitialized: true
+}));
 
-//maoriko
-app.use('/login', login);
-app.use('/clientSignUp', clientSignUp);
-app.use('*', index);
-
-var flash = require('connect-flash');
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-
+app.use(router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

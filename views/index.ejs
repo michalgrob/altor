@@ -41,9 +41,10 @@
                   </div>
                   <button type="submit" class="btn btn-default">Submit</button>
               </form>
-              <% if (e_loggin.length > 0) {%>
+              
+              <% if (user) {%>
               <ul class="nav navbar-nav navbar-right">
-              <li>Hello <%e_loggin%> </li>
+                  <li>Hello <%= user.local.email %> </li>
               </ul>
               <%} else { %>
               <ul class="nav navbar-nav navbar-right">
