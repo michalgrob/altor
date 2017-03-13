@@ -11,32 +11,33 @@ var session  = require('express-session');
 var router = express.Router();
 var passport = require('passport');
 var flash = require('connect-flash');
-// configuration ===============================================================
+
+/// ====================configuration==========================
 router.use(passport.initialize());
 router.use(passport.session()); // persistent login sessions
 require('./config/passport')(passport); // pass passport for configuration
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
-/// our pages
+/// ====================our pages==========================
 var index = require('./routes/index')(router, passport);
 var users = require('./routes/users')(router);
 var clientSignUp = require('./routes/clientSignUp')(router, passport);
 var login = require('./routes/login')(router, passport);
-
+var routes = require('./routes/routes')(router);
 /// every unknown page redirect to home
-router.get('/*', function (req, res, next) {
-    res.redirect('/index');
-});
+// router.get('/*', function (req, res, next) {
+//     res.redirect('/index');
+// });
 
 var app = express();
 
-// view engine setup
+///  ====================view engine setup==========================
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/assets', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
