@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-</head>
-<body>
-
-<%include ./header%>
-
+<% layout('boilerplate') -%>
 <div class="container">
 
     <h1><span class="fa fa-sign-in"></span> Signup</h1>
@@ -17,9 +7,6 @@
     <div class="alert alert-danger"><%= message %></div>
     <% } %>
     <!-- SignUp FORM -->
-
-
-
     <form action="/clientSignUp" method="post">
         <div class="form-group">
             <label>Email</label>
@@ -38,5 +25,3 @@
     <p>Already have an account? <a href="/login">Login</a></p>
     <p>Or go <a href="/">home</a>.</p>
 </div>
-</body>
-</html>
