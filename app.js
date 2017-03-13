@@ -24,11 +24,9 @@ var index = require('./routes/index')(router, passport);
 var users = require('./routes/users')(router);
 var clientSignUp = require('./routes/clientSignUp')(router, passport);
 var login = require('./routes/login')(router, passport);
+var admin = require('./routes/admin')(router, passport);
+/// ====================other routing==========================
 var routes = require('./routes/routes')(router);
-/// every unknown page redirect to home
-// router.get('/*', function (req, res, next) {
-//     res.redirect('/index');
-// });
 
 var app = express();
 
