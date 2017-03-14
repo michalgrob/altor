@@ -16,13 +16,15 @@ var flash = require('connect-flash');
 router.use(passport.initialize());
 router.use(passport.session()); // persistent login sessions
 require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport/business-strategy')(passport); // Configs passport for business sign up
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
 /// ====================our pages==========================
 var index = require('./routes/index')(router, passport);
 var users = require('./routes/users')(router);
-var clientSignUp = require('./routes/clientSignUp')(router, passport);
+var clientSignUp = require('./routes/client-sign-up')(router, passport);
+var businessSignUp = require('./routes/business-sign-up')(router, passport);
 var login = require('./routes/login')(router, passport);
 var admin = require('./routes/admin')(router, passport);
 /// ====================other routing==========================
@@ -33,9 +35,11 @@ var app = express();
 ///  ====================view engine setup==========================
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+engine = require('ejs-mate');
+// use ejs-locals for all ejs templates:
+app.engine('ejs', engine);
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public/assets', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public/assets', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,7 +72,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('pages/error', { user: req.user });
 });
 
 module.exports = app;

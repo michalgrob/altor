@@ -7,4 +7,4 @@ module.exports = function (router)
         req.logout();
         res.redirect('/');
     });
-}
+};

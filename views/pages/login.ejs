@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-</head>
-<body>
-<%include ./header%>
-
-<div class="container">
-
+<% layout('boilerplate') -%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
     <h1><span class="fa fa-sign-in"></span> Login</h1>
     <% if (message.length > 0) { %>
     <div class="alert alert-danger"><%= message %></div>
@@ -29,8 +21,7 @@
         <button type="submit" class="btn btn-warning btn-lg">Login</button>
     </form>
     <hr>
-    <p>Don't have an account? <a href="/clientSignUp">SignUp</a></p>
+    <p>Don't have an account? <a href="/client-sign-up">SignUp</a></p>
     <p>Or go <a href="/">Home</a>.</p>
 </div>
-</body>
-</html>
+        </div></div>

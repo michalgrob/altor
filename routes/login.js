@@ -2,7 +2,7 @@ module.exports = function (router, passport) {
 
     /* GET signup page. */
     router.get('/login', function (req, res, next) {
-        res.render('login', { title: 'Altor', user: req.user, message: req.flash('loginMessage')});
+        res.render('pages/login', { title: 'Altor', user: req.user, message: req.flash('loginMessage')});
     });
 
     router.get('/loginSuccess', function(req,res){
