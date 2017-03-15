@@ -2,9 +2,14 @@ module.exports = function (router, passport) {
     var User = require('../models/user');
 
     router.get('/admin', isAdmin ,function (req, res, next) {
-        res.render('admin', {title: 'Altor', user: req.user, eUsers: User});
+        res.render('pages/admin', {title: 'Altor', user: req.user});
     });
-
+    router.get('/getAllUsers', isAdmin ,function (req, res, next) {
+        User.find({}, function(err,users){
+            res.send("fffff");
+            //users[0].local.email
+        });
+    });
     function isAdmin(req, res, next) {
         // getAllUsers();
 

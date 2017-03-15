@@ -16,7 +16,7 @@ var flash = require('connect-flash');
 router.use(passport.initialize());
 router.use(passport.session()); // persistent login sessions
 require('./config/passport')(passport); // pass passport for configuration
-require('./config/passport/business-strategy')(passport); // Configs passport for business sign up
+require('./config/passport/business-strategy')(passport); // Configs passport for business sign up and log-in
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
@@ -25,6 +25,7 @@ var index = require('./routes/index')(router, passport);
 var users = require('./routes/users')(router);
 var clientSignUp = require('./routes/client-sign-up')(router, passport);
 var businessSignUp = require('./routes/business-sign-up')(router, passport);
+require('./routes/business-login')(router, passport);
 var login = require('./routes/login')(router, passport);
 var admin = require('./routes/admin')(router, passport);
 /// ====================other routing==========================

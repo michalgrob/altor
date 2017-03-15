@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %> Admin Panel</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-</head>
-<body>
-<%include ./header%>
-<h1><%= title %></h1>
-<p>Mange your life</p>
+<% layout('boilerplate') -%>
+<script>
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("/getAllUsers")
+            .then(function(response) {
+                $scope.user = response.data;
+    })});
+</script>
 <br>
 <h1>Registered Users:</h1>
-<ul>
-    <%eUsers.find({}, function(err,users){users.forEach(user)
-    {%>
-    <li><%= user.local.email%></li>
-    <%}});%>
+<ul ng-app="myApp" ng-controller="myCtrl">
+    {{user}}
 </ul>
-</body>
-</html>
