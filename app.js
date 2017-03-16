@@ -25,8 +25,6 @@ var index = require('./routes/index')(router, passport);
 var users = require('./routes/users')(router);
 var clientSignUp = require('./routes/client-sign-up')(router, passport);
 var businessSignUp = require('./routes/business-sign-up')(router, passport);
-var delUser = require('./routes/del-user')(router, passport);
-//require('./routes/business-login')(router, passport);
 var login = require('./routes/login')(router, passport);
 var admin = require('./routes/admin')(router, passport);
 /// ====================other routing==========================
