@@ -1,15 +1,10 @@
 <% layout('boilerplate') -%>
-<script>
-    var app = angular.module('myApp', []);
-
-    app.controller('myCtrl', function($scope, $http) {
-        $http.get("/getAllUsers")
-            .then(function(response) {
-                $scope.user = response.data;
-    })});
-</script>
 <br>
 <h1>Registered Users:</h1>
-<ul ng-app="myApp" ng-controller="myCtrl">
-    {{user}}
+
+<ul>
+    <%eUser.forEach(function(user){%>
+    <li><%=user.local.email%>
+        <a href="/del-user?email=<%=user.local.email%>"> delete</a></li>
+    <%});%>
 </ul>

@@ -7,6 +7,7 @@ module.exports = function (router, passport) {
 
     router.get('/loginSuccess', function(req,res){
         if (req.user.local.email == "admin")
+
             res.redirect('/admin');
         else
             res.redirect('/index');
