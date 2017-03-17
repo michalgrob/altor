@@ -1,4 +1,4 @@
-<% layout('boilerplate') -%>
+<% layout('boilerplate') %>
 
 <div class="container">
     <div class="row">
@@ -6,15 +6,15 @@
             <h1><span class="fa fa-sign-in"></span>Registered Users</h1>
         </div>
 
-<ul class=""list-group">
+<ul class="list-group">
     <%eUser.forEach(function(user){%>
         <div class="col-md-6">
-    <li class="list-group-item active"><%=user.local.email%>
-    </li>
+            <li class="list-group-item active"><%=user.local.email%>
         </div>
         <div class="col-md-6">
-        <a href="/del-user?email=<%=user.local.email%>" class="btn btn-default" role="button"> delete</a></li>
+            <a href="/del-user?email=<%=user.local.email%>" class="btn btn-default" role="button">delete</a></li>
         </div>
+    </li>
     <%});%>
 </ul>
         </div>
