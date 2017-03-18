@@ -1,6 +1,6 @@
 // load the things we need
 var mongoose = require('mongoose');
-var passwordUtils = require('../config/password-utils');
+var PassportUtils = require('../config/passport-utils');
 
 // define the schema for our user model
 var userSchema = new mongoose.Schema({
@@ -10,10 +10,10 @@ var userSchema = new mongoose.Schema({
     { discriminatorKey: 'role' });
 
 // generating a hash
-userSchema.methods.generateHash = passwordUtils.generateHash;
+userSchema.methods.generateHash = PassportUtils.generateHash;
 
 // checking if password is valid
-userSchema.methods.validPassword = passwordUtils.validPassword;
+userSchema.methods.validPassword = PassportUtils.validPassword;
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);
