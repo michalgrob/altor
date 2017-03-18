@@ -4,6 +4,8 @@
 var LocalStrategy    = require('passport-local').Strategy;
 
 // load up the user model
+var User = require('../../models/user');
+
 var Business       = require('../../models/business');
 
 module.exports = function(passport) {
@@ -25,7 +27,7 @@ module.exports = function(passport) {
                 // TODO: Add input email format validation
                 // if the user is not already logged in:
                 if (!req.user) {
-                    Business.findOne({'email': email}, function (err, business) {
+                    User.findOne({'email': email}, function (err, business) {
                         // if there are any errors, return the error
                         if (err)
                             return done(err);

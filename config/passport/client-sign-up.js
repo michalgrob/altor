@@ -4,6 +4,9 @@
 var LocalStrategy    = require('passport-local').Strategy;
 
 // load up the user model
+var User = require('../../models/user');
+
+// load the client model
 var Client       = require('../../models/client');
 
 module.exports = function(passport) {
@@ -25,7 +28,7 @@ module.exports = function(passport) {
             process.nextTick(function() {
                 // TODO: Validate email
                 if (!req.user) {
-                    Client.findOne({ 'email' :  email }, function(err, user) {
+                    User.findOne({ 'email' :  email }, function(err, user) {
                         // if there are any errors, return the error
                         if (err)
                             return done(err);
