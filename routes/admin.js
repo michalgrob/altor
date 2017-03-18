@@ -4,11 +4,13 @@ module.exports = function (router, passport) {
     router.get('/del-user', function (req, res)
     {
         var email = req.query.email; // $_GET["id"]
-        User.findOne({'local.email': email}, function (err, user)
+        User.findOne({'email': email}, function (err, user)
         {
-            if(err)res.redirect('/error');
+            if(err) {
+                res.redirect('/error');
+            }
 
-            if (user.local.email == email)
+            if (user.email == email)
             {
                 user.remove();
             }
@@ -32,7 +34,7 @@ module.exports = function (router, passport) {
 
         if(req.user)
         {
-            if (req.user.local.email==="admin")
+            if (req.user.email==="admin")
                 next();
             return;
         }
