@@ -1,14 +1,9 @@
-// load the things we need
 var mongoose = require('mongoose');
-var Mixed = mongoose.Schema.Types.Mixed;
-var passwordUtils = require('../config/password-utils');
+var user = require('./user');
 
-// define the schema for our user model
-var businessSchema = mongoose.Schema({
-    name: String,
-    email: String,
+// Define client as a discriminator of user
+var businessSchema = user.discriminator('business', mongoose.Schema({
     phone: String,
-    password: String,
     location: {
         country: String,
         city: String,
@@ -16,15 +11,9 @@ var businessSchema = mongoose.Schema({
         number: Number
     },
     joinDate: Date,
-    photos: [Mixed],
     category: String,
     active: Boolean
-});
-
-businessSchema.methods.generateHash = passwordUtils.generateHash;
-
-// checking if password is valid
-businessSchema.methods.validPassword = passwordUtils.validPassword;
+}));
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Business', businessSchema);
+module.exports = businessSchema;
