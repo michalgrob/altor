@@ -5,17 +5,15 @@
         <div class="col-md-12">
             <h1><span class="fa fa-sign-in"></span>Registered Users</h1>
         </div>
-
-<ul class="list-group">
-    <%eUser.forEach(function(user){%>
-        <div class="col-md-6">
-            <li class="list-group-item active"><%=user.email%>
-        </div>
-        <div class="col-md-6">
-            <a href="/del-user?email=<%=user.email%>" class="btn btn-default" role="button">delete</a></li>
-        </div>
-    </li>
-    <%});%>
-</ul>
-        </div>
     </div>
+    <div class="row">
+        <% eUser.forEach(function(user){ %>
+        <div class="col-sm-10 well well-sm">
+            <%= user.email %>
+        </div>
+        <div class="col-sm-2">
+            <a href="/del-user?email=<%= user.email %>" class="btn btn-default">delete</a>
+        </div>
+        <% }); %>
+    </div>
+</div>

@@ -1,6 +1,3 @@
-/**
- * Created by dell on 14/03/2017.
- */
 var bcrypt = require('bcrypt-nodejs');
 module.exports = {
     generateHash: function (password) {
@@ -8,5 +5,11 @@ module.exports = {
     },
     validPassword: function (password) {
         return bcrypt.compareSync(password, this.password);
+    },
+
+    ValidateEmail: function validateEmail(email)
+    {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
 };
