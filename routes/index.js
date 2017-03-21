@@ -1,12 +1,26 @@
-module.exports = function (router, passport) {
+module.exports = function (router, passport)
+{
+    var Messages = require('../models/message');
+
     /* GET home page. */
-    router.get('/index', function (req, res, next) {
+    router.get('/index', function (req, res, next)
+    {
         res.redirect('/');
     });
 
-    router.get('/', function (req, res, next) {
-        console.log("Logged in user: " + req.user);
-        res.render('pages/index', { title: 'Altor', user: req.user });
+    router.get('/', function (req, res, next)
+    {
+        if (req.user)
+        {
+            Messages.find({'to': req.user.email}, function (err, messages)
+            {
+                res.render('pages/index', {title: 'Altor - Home', user: req.user, eMessage: messages});
+            })
+        }
+        else
+        {
+            res.render('pages/index', {title: 'Altor - Home', user: req.user, eMessage: null});
+        }
     });
 };
 

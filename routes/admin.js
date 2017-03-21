@@ -1,12 +1,15 @@
-module.exports = function (router, passport) {
+module.exports = function (router, passport)
+{
     var User = require('../models/user');
+    var Messages = require('../models/message');
 
     router.get('/del-user', function (req, res)
     {
         var email = req.query.email; // $_GET["id"]
         User.findOne({'email': email}, function (err, user)
         {
-            if(err) {
+            if (err)
+            {
                 res.redirect('/error');
             }
 
@@ -18,23 +21,72 @@ module.exports = function (router, passport) {
         res.redirect('/admin');
     });
 
-    router.get('/admin', isAdmin ,function (req, res) {
-        User.find({}, function(err,users) {
-            res.render('pages/admin', {title: 'Altor', user: req.user, eUser:users});
-         });});
+    router.get('/del-message', function (req, res)
+    {
+        var id = req.query.id;
+        Messages.findOne({'_id': id}, function (err, message)
+        {
+            if (err)
+            {
+                res.redirect('/error');
+            }
 
-    // router.get('/getAllUsers', isAdmin ,function (req, res, next) {
-    //     User.find({}, function(err,users){
-    //         res.send(users[4].local.email);
-    //     });
-    // });
+            if (message._id == id)
+            {
+                message.remove();
+            }
+        });
+        res.redirect('/admin');
+    });
 
-    function isAdmin(req, res, next) {
+    router.post('/send-message', function (req, res)
+    {
+        var email = req.query.email;
+        var content = req.body.content;
+        User.findOne({'email': email}, function (err, user)
+        {
+            if (err)
+            {
+                res.redirect('/error');
+            }
+
+            if (user.email == email)
+            {
+                var msg = new Messages();
+                msg.from = req.user.email;
+                msg.to = email;
+                msg.read = false;
+                msg.content = content;
+
+                msg.save(function (err)
+                {
+                    if (err)
+                        res.redirect('/error');
+
+                    res.redirect('/admin');
+                });
+            }
+        });
+    });
+
+    router.get('/admin', isAdmin, function (req, res)
+    {
+        User.find({}, function (err, users)
+        {
+            Messages.find({'to': req.user.email}, function (err, messages)
+            {
+                res.render('pages/admin', {title: 'Altor', user: req.user, eUser: users, eMessage: messages});
+            })
+        });
+    });
+
+    function isAdmin(req, res, next)
+    {
         // getAllUsers();
 
-        if(req.user)
+        if (req.user)
         {
-            if (req.user.email==="admin")
+            if (req.user.email === "admin")
                 next();
             return;
         }

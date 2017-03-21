@@ -1,0 +1,21 @@
+<%if (user){%>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Incoming messages for <%= user.email %></h1>
+    </div>
+</div>
+<div class="row">
+    <% if (eMessage){eMessage.forEach(function(message){ %>
+    <div class="col-md-12">
+        <h3>
+            <%= message.content %>
+        </h3>
+        <a href="/del-message?id=<%= message._id %>" class="btn btn-default">delete</a>
+    </div>
+    <% })}else{ %>
+    <div class="col-md-12">
+        <h3>none!</h3>
+    </div>
+    <% } %>
+</div>
+<%}%>
