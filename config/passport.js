@@ -164,8 +164,11 @@ module.exports = function (passport)
                             var newClient = new Client();
 
                             newClient.email = email;
+                            newClient.role = 'client';
                             newClient.password = newClient.generateHash(password);
-                            newClient.phone = "053-526236";
+                            newClient.phone = req.body.phoneNumber;
+                            newClient.lastName = req.body.lastName;
+                            newClient.firstName = req.body.firstName;
                             newClient.joinDate = new Date();
 
                             newClient.save(function (err)
