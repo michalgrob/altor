@@ -144,7 +144,9 @@ module.exports = function (passport)
             // asynchronous
             process.nextTick(function ()
             {
-                // TODO: Validate email
+                if(PassportUtils.ValidateEmail(email) == false){
+                    return done(null, false, req.flash('signupMessage', 'the email is not valid.'));
+                }
                 if (!req.user)
                 {
                     User.findOne({'email': email}, function (err, user)
