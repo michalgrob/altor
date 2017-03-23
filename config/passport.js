@@ -147,6 +147,10 @@ module.exports = function (passport)
                 if(PassportUtils.ValidateEmail(email) == false){
                     return done(null, false, req.flash('signupMessage', 'the email is not valid.'));
                 }
+                var error = {errorDes : ''};
+                if(!PassportUtils.validatePassword(password,error)){
+                    return done(null, false, req.flash('signupMessage', error.errorDes));
+                }
                 if (!req.user)
                 {
                     User.findOne({'email': email}, function (err, user)
