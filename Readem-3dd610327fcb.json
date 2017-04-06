@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "readem-163808",
+  "private_key_id": "3dd610327fcbdb17952512ac8245b5ef12644864",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCnvK3Kix8aH4Bp\nNduH9jmNt2KBq74eojjVEyiUgr1wjJ1srUxHC4cobrKGWFQ7EqxopHBAhtW/lfWx\nVnRpR6mIGzwy1UfHuNgjzXTQDeqthDkiMwMZoYvA9fxw3QbOVFRlHT/tK8w3dinW\nXk9T9Yy18105eo8dfJgFDVpBvbJOYJOFErVZfyNwgYvFR7QLZVU1HxZ4cbUYPKo2\nDi+6HgY45P+BXjNEvL8VlikLvTaB1YDptGhKw1ufVhCpkijqvoHa6R4m125oICcg\nlDWG5UxeAN2eXEVTD8Jj4sHgalQ52CZjiTXw8rPeMa8O4TGzVFyee0VB8EIFJk1D\n6Fh0DtsJAgMBAAECggEAIGb+W4YMeAtlzu0sf1M9QvcN/Gakz14fBGozCJ1I4xkG\nwBuqBH9hmJnpurINc2vkCkLZvF1PpTbew2ckDcJeKYC5XEh/GUHH3wKtchN+Jg7I\nyqZ4Dtd6G8ho/5Ry4CDCPNYtpy8yv/P/mP2W7W0dxXhBpfza8KNE6pTtvo1aiHEn\naG+FIXRN46rMqxlw0rYakDUCZCW4wl0yUMWHOnAzJQpCxAxLQL0bB8/lgHNYeKiN\npuJm+0VOaBxMMnX3ilP/XsH48nattdYvoGevQ9RDaneHGmW//PJCM3OW8yfA5WAd\nHmKCnTy/WmJoTb0VnaxXfysk/dH00HjSYofTIQcR0QKBgQDZGlEDQdK/SRZ0Efd/\nrAZMejMuS1Cm4Nge7bHlVWAxhPKwAQJSvtvy/h8MPdUX9fVgJS3Y/rwHYld2G6Tg\n5bDSIJQgFi4zKlpiYq7UWVXcnVEUxSbCmFxxZRR0wx7mI0iqAEk2I4m15U9RslkN\nbHRtdT9gZ4G5a3q08nu9XK3I0wKBgQDFyiQueTD5d7kPAeP7ge5BTX5BcxeS3ZI6\n7KP0VTkl4tTKpF8gZqY9zAWGG/F7ubdlczxFF4dV6H8K2PGwhEtd+ob8MiemkJm8\n1/RuSobMEVmcUq45Jo4gbhEk8KwqxO1sZyPUxt8SX2kQb+qCscPDQCbcV0ITG0ub\npb4F7DkjMwKBgFMuaBfNYofz4ux57dA3AvrOX0m/hZlK0MOY4u4xdffDLpEM8ezu\nP6usfgzcrAbQMEG0PQrFHxndLhGMqfGZT9RSsy5QEUd9VMAZe07VI7axd91zZFRu\nuAyiY+IQ2IfowPCRx3s8xoiw4WE16jTgdwNxRuUTA3sdmRg3R/3XwqYNAoGBAL2E\nbx7IqRCgkwW6PgUj/nM8GZoE+bWT8SXc0UywzE1tB5AT58JYGTplX3WdGMoAraXb\nwQhC/z5lxDVUomEMolquTuEf/bYwH98+3ctAReELTt3mq2G/e7e/P1Yx9gYVI5oX\nSdH7rIsiOL2zPvVz96wCsDm4sms0YEIHkgiCzEzZAoGBALa+ezQeGWNp6icO6wD/\nDFumWw9HYp87stVx6gz8DaUR0992+34ZNPfpo6DtT4fKGQrOvjGrDnpuz4e/bxVL\n0/VIgEkjmHdSBzMcB0aFrTtAzXIfgXePjSbFxKiTrWE929Az4pqA1pYMfSIdZ49b\nS5bguQgI8KRlmzOltvSVLHVf\n-----END PRIVATE KEY-----\n",
+  "client_email": "readem-admin@readem-163808.iam.gserviceaccount.com",
+  "client_id": "117983458883394328135",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/readem-admin%40readem-163808.iam.gserviceaccount.com"
+}
