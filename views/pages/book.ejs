@@ -1,19 +1,45 @@
 <% layout('boilerplate') %>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
+<div class="container" style="width:800px; margin:0 auto;">
+    <% for(var i = 0;i < book.pages.length;i++){ %>
+    <div class="row" id="<%= i + 'page' %>" style="display: none;">
 
-            <% for(var i=0;i<book.pages.length;i++){%>
 
-            <li><a  onclick="openPgage(<%=book.pages[i] %>)"> i </a></li>
-                <div class="col-lg-2 well well-sm" style="display: none">
-                    <button type="button"   class="btn btn-primary btn-lg" onclick="startRecording()" >התחל להקליט!</button>
-                    <button type="button"  class="btn btn-primary btn-lg" onclick="stopRecording()" >הפסק להקליט!</button>
-                    <%=book.pages[i] %>
-                </div>
-            <% }; %>
+        <div class="col-lg-12 well well-md">
+            <div class="row" style="font-size: 20px;"> <%= i %> </div>
+            <div class="row" style="text-align: center; font-size:20px; padding: 5%;">
+                <%= book.pages[i] %>
+            </div>
+
+            <div class="row" style="width: 50%; margin: 0 auto;">
+
+                <button id="<%= i + 'btnStart'%>" type="button" class="btn btn-primary btn-lg" onclick="startRec(this)" data>התחל להקליט!</button>
+                <button id="<%= i + 'btnStop'%>" type="button" class="btn btn-primary btn-lg" onclick="stopRecording()" style="display: none">הפסק
+                    להקליט!
+                </button>
+            </div>
 
 
         </div>
+
+
     </div>
+    <% }; %>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        var x = $('#0page')[0];
+        x.style.display = "inline";
+    });
+
+
+    function startRec(btnStart){
+        var idOfBtn = btnStart.id;
+
+
+        startRecording()
+    }
+
+</script>
