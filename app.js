@@ -29,8 +29,10 @@ var index = require('./routes/index')(router, passport);
 var users = require('./routes/users')(router);
 var clientSignUp = require('./routes/pupil-sign-up')(router, passport);
 var businessSignUp = require('./routes/teacher-sign-up')(router, passport);
+var booksList = require('./routes/read-book')(router);
 var login = require('./routes/login')(router, passport);
 var admin = require('./routes/admin')(router, passport);
+var books = require('./routes/books')(router);
 /// ====================other routing==========================
 var routes = require('./routes/routes')(router);
 

@@ -1,0 +1,19 @@
+<% layout('boilerplate') %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <% for(var i=0;i<book.pages.length;i++){%>
+
+            <li><a  onclick="openPgage(<%=book.pages[i] %>)"> i </a></li>
+                <div class="col-lg-2 well well-sm" style="display: none">
+                    <button type="button"   class="btn btn-primary btn-lg" onclick="startRecording()" >התחל להקליט!</button>
+                    <button type="button"  class="btn btn-primary btn-lg" onclick="stopRecording()" >הפסק להקליט!</button>
+                    <%=book.pages[i] %>
+                </div>
+            <% }; %>
+
+
+        </div>
+    </div>
+</div>
