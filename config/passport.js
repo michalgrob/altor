@@ -6,8 +6,6 @@ var PassportUtils = require('./passport-utils');
 var User = require('../models/user');
 var pupil =require('../models/pupil');
 var teacher = require ('../models/teacher');
-var simil = require('similarity');
-var com = require('string-similarity');
 module.exports = function (passport)
 {
     // =========================================================================
