@@ -27,8 +27,8 @@
         <Compile Include="models\client.js" />
         <Compile Include="models\user.js" />
         <Compile Include="routes\admin.js" />
-        <Compile Include="routes\business-sign-up.js" />
-        <Compile Include="routes\client-sign-up.js" />
+        <Compile Include="routes\teacher-sign-up.js" />
+        <Compile Include="routes\pupil-sign-up.js" />
         <Compile Include="routes\index.js" />
         <Compile Include="routes\login.js" />
         <Compile Include="routes\routes.js" />

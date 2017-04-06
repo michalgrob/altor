@@ -6,7 +6,8 @@ var PassportUtils = require('./passport-utils');
 var User = require('../models/user');
 var Business = require('../models/business');
 var Client = require('../models/client');
-
+var pupil =require('../models/pupil');
+var teacher = require ('../models/teacher');
 module.exports = function (passport)
 {
     // =========================================================================
@@ -73,7 +74,7 @@ module.exports = function (passport)
     // =========================================================================
     // LOCAL SIGNUPS =============================================================
     // =========================================================================
-    passport.use('business-signup', new LocalStrategy({
+    passport.use('teacher-signup', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
             usernameField: 'email',
             passwordField: 'password',
@@ -87,7 +88,7 @@ module.exports = function (passport)
             // asynchronous
             process.nextTick(function ()
             {
-                // TODO: Add input email format validation
+
                 // if the user is not already logged in:
                 if (!req.user)
                 {
@@ -105,18 +106,18 @@ module.exports = function (passport)
                         {
 
                             // create the user
-                            var newBusiness = new Business();
-                            newBusiness.role = 'business';
-                            newBusiness.email = email;
-                            newBusiness.password = newBusiness.generateHash(password);
-                            newBusiness.joinDate = new Date();
+                            var newteacher = new teacher();
+                            newteacher.role = 'teacher';
+                            newteacher.email = email;
+                            newteacher.password = newteacher.generateHash(password);
+                            newteacher.joinDate = new Date();
 
-                            newBusiness.save(function (err)
+                            newteacher.save(function (err)
                             {
                                 if (err)
                                     return done(err);
 
-                                return done(null, newBusiness);
+                                return done(null, newteacher);
                             });
                         }
 
@@ -130,7 +131,7 @@ module.exports = function (passport)
             });
         }));
 
-    passport.use('client-signup', new LocalStrategy({
+    passport.use('pupil-signup', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
             usernameField: 'email',
             passwordField: 'password',
@@ -167,22 +168,22 @@ module.exports = function (passport)
                         {
 
                             // create the user
-                            var newClient = new Client();
+                            var newpupil = new pupil();
 
-                            newClient.email = email;
-                            newClient.role = 'client';
-                            newClient.password = newClient.generateHash(password);
-                            newClient.phone = req.body.phoneNumber;
-                            newClient.lastName = req.body.lastName;
-                            newClient.firstName = req.body.firstName;
-                            newClient.joinDate = new Date();
+                            newpupil.email = email;
+                            newpupil.role = 'pupil';
+                            newpupil.password = newpupil.generateHash(password);
+                            newpupil.phone = req.body.phoneNumber;
+                            newpupil.lastName = req.body.lastName;
+                            newpupil.firstName = req.body.firstName;
+                            newpupil.joinDate = new Date();
 
-                            newClient.save(function (err)
+                            newpupil.save(function (err)
                             {
                                 if (err)
                                     return done(err);
 
-                                return done(null, newClient);
+                                return done(null, newpupil);
                             });
                         }
                     });
