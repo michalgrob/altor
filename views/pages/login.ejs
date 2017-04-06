@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
+    <h1><span class="fa fa-sign-in"></span>התחבר</h1>
     <% if (message.length > 0) { %>
     <div class="alert alert-danger"><%= message %></div>
     <% } %>
@@ -10,19 +10,19 @@
     <!-- LOGIN FORM -->
     <form action="/login" method="post">
         <div class="form-group">
-            <label>Email</label>
+            <label>דואר אלקטרוני</label>
             <input type="text" class="form-control" name="email">
         </div>
         <div class="form-group">
-            <label>Password</label>
+            <label>סיסמא</label>
             <input type="password" class="form-control" name="password">
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+        <button type="submit" class="btn btn-warning btn-lg">התחבר</button>
     </form>
     <hr>
 
-    <p>Don't Have an account? <a href="/client-sign-up">Sign Up Now!</a></p>
-    <p>Or go <a href="/">Home</a>.</p>
+    <p>אין לך משתמש? <a href="/client-sign-up">הרשם עכשיו!</a></p>
+    <p>או שתעבור ל<a href="/">מסך הבית</a>.</p>
             </div>
         </div>
     </div>

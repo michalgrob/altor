@@ -2,11 +2,11 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Readem</h1>
-        <p>Read is fun</p>
+        <p>לקרוא זה כיף!</p>
         <% if (user && user.role == 'client') { %>
-        <div> You are logged in as a user! email: <%= user.email %></div>
+        <div> אתה מחובר כתלמיד <%= user.email %></div>
         <% } else if (user) { %>
-        <div> You are logged in as a business! email: <%= user.email %></div>
+        <div> את מחוברת כמורה <%= user.email %></div>
         <% } %>
     </div>
     <% include ../partials/messages.ejs%>
