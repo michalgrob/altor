@@ -4,8 +4,6 @@ var PassportUtils = require('./passport-utils');
 
 // load up the users model
 var User = require('../models/user');
-var Business = require('../models/business');
-var Client = require('../models/client');
 var pupil =require('../models/pupil');
 var teacher = require ('../models/teacher');
 module.exports = function (passport)

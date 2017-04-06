@@ -9,6 +9,10 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
 
+/// =================================================================== ////
+/// ========================= Binary server =========================== ////
+
+/// ################################################################## ////
 var router = express.Router();
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -76,5 +80,23 @@ app.use(function (err, req, res, next)
     res.status(err.status || 500);
     res.render('pages/error', {user: req.user});
 });
+
+function recognizeSpeech(outFile) {
+    const options = {
+        encoding: 'LINEAR16',
+        sampleRate: 48000,
+        languageCode: "he-IL"
+    };
+    const fileName = './' + outFile;
+
+    // Detects speech in the audio file
+    speechClient.recognize(fileName, options)
+        .then((results) => {
+            const transcription = results[0];
+            const confidence = results[1].results[0].alternatives[0].confidence;
+            console.log(`Transcription: ${transcription}`);
+            console.log(`Confidence: ${confidence}`);
+        });
+}
 
 module.exports = app;

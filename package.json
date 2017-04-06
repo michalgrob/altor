@@ -1,6 +1,6 @@
 {
-  "name": "altor",
-  "version": "0.0.0",
+  "name": "readem",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -21,6 +21,12 @@
     "passport": "~0.3.2",
     "passport-local": "~1.0.0",
     "passport-twitter": "~1.0.4",
-    "serve-favicon": "~2.3.2"
+    "serve-favicon": "~2.3.2",
+    "binaryjs": "latest",
+    "wav": "latest",
+    "@google-cloud/speech": "0.6.0",
+    "@google-cloud/storage": "0.7.0",
+    "node-record-lpcm16": "0.2.0",
+    "yargs": "6.6.0"
   }
 }

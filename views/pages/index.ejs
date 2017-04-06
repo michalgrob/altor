@@ -2,12 +2,16 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Readem</h1>
-        <p>Read is fun</p>
+        <p>Reading is fun!</p>
         <% if (user && user.role == 'client') { %>
         <div> You are logged in as a user! email: <%= user.email %></div>
         <% } else if (user) { %>
         <div> You are logged in as a business! email: <%= user.email %></div>
         <% } %>
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary btn-lg" onclick="startRecording()">התחל להקליט!</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="stopRecording()">הפסק להקליט!</button>
     </div>
     <% include ../partials/messages.ejs%>
 </div>

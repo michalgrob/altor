@@ -7,7 +7,19 @@
 var app = require('../app');
 var debug = require('debug')('altor:server');
 var http = require('http');
+var BinaryServer = require('binaryjs').BinaryServer;
+var fs = require('fs');
+var wav = require('wav');
+var outFile = 'demo.wav';
 
+/// ================ Google speech recognition ======================== ////
+const Speech = require('@google-cloud/speech');
+// Your Google Cloud Platform project ID
+const projectId = 'readem-163808';
+// Instantiates a client
+const speechClient = Speech({
+    projectId: projectId
+});
 /**
  * Get port from environment and store in Express.
  */
@@ -26,6 +38,45 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+binaryServer = BinaryServer({port: 9001});
+function recognizeSpeech(outFile) {
+    const options = {
+        encoding: 'LINEAR16',
+        sampleRate: 48000,
+        languageCode: "he-IL"
+    };
+    const fileName = './' + outFile;
+
+    // Detects speech in the audio file
+    speechClient.recognize(fileName, options)
+        .then((results) => {
+            const transcription = results[0];
+            const confidence = results[1].results[0].alternatives[0].confidence;
+            console.log(`Transcription: ${transcription}`);
+            console.log(`Confidence: ${confidence}`);
+        });
+}
+
+binaryServer.on('connection', function(client) {
+    console.log('new connection');
+
+    var fileWriter = new wav.FileWriter(outFile, {
+        channels: 1,
+        sampleRate: 48000,
+        bitDepth: 16
+    });
+
+    client.on('stream', function(stream, meta) {
+        console.log('new stream');
+        stream.pipe(fileWriter);
+
+        stream.on('end', function() {
+            fileWriter.end();
+            console.log('wrote to file ' + outFile);
+            recognizeSpeech(outFile);
+        });
+    });
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
