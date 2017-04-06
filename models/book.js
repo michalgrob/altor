@@ -4,12 +4,12 @@
 // load the things we need
 var mongoose = require('mongoose');
 var PassportUtils = require('../config/passport-utils');
-
+var page = require('./page');
 // define the schema for our user model
 
 var bookSchema = new mongoose.Schema({
-name: String
-
+name: String,
+pages : [page]
 });
 
 
