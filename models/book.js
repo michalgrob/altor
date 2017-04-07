@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 var bookSchema = new mongoose.Schema({
 name: String,
-pages : [String]
+pages : [Object]
 });
 //
 // bookSchema.pre('save', function(next) {

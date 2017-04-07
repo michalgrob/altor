@@ -16,8 +16,8 @@
  })*/
 var mongoose = require('mongoose');
 var Book = require('../models/book');
-//var Page=require('../models/page');
-
+var Page=require('../models/page');
+var similarity = require("similarity");
 module.exports = function (router, passport) {
 
 
@@ -31,6 +31,8 @@ module.exports = function (router, passport) {
                 "אלדד אז אמר מעניין מה אפשר לעשות בעלה שנשר"
             ]}});
     });
+
+
 
 };
 

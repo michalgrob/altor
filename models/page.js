@@ -2,7 +2,8 @@
  * Created by michal on 06/04/2017.
  */
 // load the things we need
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var fs = require('fs');
 
@@ -10,6 +11,7 @@ var fs = require('fs');
 
 var pageSchema = new mongoose.Schema({
     pageText: String,
+    dadBook: Schema.Types.ObjectId
    // img: { data: Buffer, contentType: String }
 });
 
@@ -19,7 +21,7 @@ var pageSchema = new mongoose.Schema({
 
 
 
-var Page = mongoose.model('page', pageSchema);
+var Page = mongoose.model('Page', pageSchema);
 module.exports = Page;
 
 

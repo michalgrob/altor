@@ -17,6 +17,8 @@ module.exports = function (router) {
 var mongoose = require('mongoose');
 var Book = require('../models/book');
 //var Page=require('../models/page');
+var Page=require('../models/page');
+var similarity = require("similarity");
 
 module.exports = function (router, passport) {
 
@@ -36,7 +38,33 @@ module.exports = function (router, passport) {
 
 
         });*/
-            res.render('pages/booksListPage', { title: 'Readem', user: req.user});//,{orders: orders_json}
+            res.render('pages/booksListPage', { title: 'Readem', user: req.user,  book: {
+                "name": "מה אפשר לעשות בעלה?",
+                "pages": [
+
+                    "גמד אחד בשם אלדד יצא לטיל ביער עד",
+                ]}});//,{orders: orders_json}
+    });
+
+
+
+    router.get('/getResult', function (req, res)
+    {
+        var expRes = req.query.expRes; // $_GET["id"]
+        Page.findOne({}, function (err, page)
+        {
+            if(similarity(expRes,page.pageText) > 0.1){
+                console.log('great');
+                res.render('pages/booksListPage',{title:'greate', user:req.user, book:{
+                    "name": "",
+                    "pages":["אתה תותח"]
+                }})
+            }else{
+                console.log('bad');
+            }
+
+        });
+
     });
 
 };

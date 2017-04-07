@@ -1,14 +1,44 @@
+<!--<% layout('boilerplate') %>-->
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-6">-->
+            <!--&lt;!&ndash; LOGIN FORM &ndash;&gt;-->
+            <!--<h1><span class="fa fa-sign-in"></span>בחר ספר</h1>-->
+
+            <!--<div class="list-group">-->
+                <!--<a href="/books/leaf" class="list-group-item">מה אפשר לעשות בעלה</a>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
 <% layout('boilerplate') %>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <!-- LOGIN FORM -->
-            <h1><span class="fa fa-sign-in"></span>בחר ספר</h1>
+<div class="container" style="width:800px; margin:0 auto;">
+    <% for(var i = 0;i < book.pages.length;i++){ %>
+    <div class="row" id="<%= i + 'page' %>" >
 
-            <div class="list-group">
-                <a href="/books/leaf" class="list-group-item">מה אפשר לעשות בעלה</a>
 
+        <div class="col-lg-12 well well-md">
+            <div class="row" style="font-size: 20px;"> </div>
+            <div class="row" style="text-align: center; font-size:20px; padding: 5%;">
+                <%= book.pages[i] %>
             </div>
+
+            <div class="row" style="width: 50%; margin: 0 auto;">
+
+                <button  type="button" class="btn btn-primary btn-lg" onclick="startRecording()" >התחל להקליט!</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="stopRecording()" >הפסק
+                    להקליט!
+                </button>
+                <a href="/getResult?expRes=<%= book.pages[i] %>" class="btn btn-default">לחץ לפענוח</a>
+            </div>
+
+
         </div>
+
+
     </div>
+    <% }; %>
 </div>
+

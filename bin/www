@@ -11,6 +11,7 @@ var BinaryServer = require('binaryjs').BinaryServer;
 var fs = require('fs');
 var wav = require('wav');
 var outFile = 'demo.wav';
+var Page = require('./../models/page');
 
 /// ================ Google speech recognition ======================== ////
 const Speech = require('@google-cloud/speech');
@@ -40,21 +41,29 @@ var server = http.createServer(app);
 server.listen(port);
 binaryServer = BinaryServer({port: 9001});
 function recognizeSpeech(outFile) {
-    const options = {
-        encoding: 'LINEAR16',
-        sampleRate: 48000,
-        languageCode: "he-IL"
-    };
-    const fileName = './' + outFile;
+    return new Promise((resolve, reject)=>{
+        "use strict";
+        const options = {
+            encoding: 'LINEAR16',
+            sampleRate: 48000,
+            languageCode: "he-IL"
+        };
+        const fileName = './' + outFile;
 
-    // Detects speech in the audio file
-    speechClient.recognize(fileName, options)
-        .then((results) => {
-            const transcription = results[0];
-            const confidence = results[1].results[0].alternatives[0].confidence;
-            console.log(`Transcription: ${transcription}`);
-            console.log(`Confidence: ${confidence}`);
-        });
+        // Detects speech in the audio file
+        speechClient.recognize(fileName, options)
+                    .then((results) => {
+                        const transcription = results[0];
+                        const confidence = results[1].results[0].alternatives[0].confidence;
+                        console.log(`Transcription: ${transcription}`);
+                        console.log(`Confidence: ${confidence}`);
+                        resolve(transcription);
+                    })
+            .catch((err)=>{
+                reject(err);
+            });
+    })
+
 }
 
 binaryServer.on('connection', function(client) {
@@ -73,7 +82,24 @@ binaryServer.on('connection', function(client) {
         stream.on('end', function() {
             fileWriter.end();
             console.log('wrote to file ' + outFile);
-            recognizeSpeech(outFile);
+            const text = recognizeSpeech(outFile).then((text)=>{
+                "use strict";
+                let textPage = new Page();
+                textPage.pageText = text;
+                textPage.save((err, page)=>{
+                    "use strict";
+                    if (err){
+                        console.error(err);
+                    } else {
+                        console.log("Inserted Successfully");
+                    }
+                })
+            }).catch((err)=>{
+                "use strict";
+                console.error("error");
+            })
+
+
         });
     });
 });

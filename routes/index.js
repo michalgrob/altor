@@ -14,7 +14,7 @@ module.exports = function (router, passport)
         {
             Messages.find({'to': req.user.email}, function (err, messages)
             {
-                res.render('pages/index', {title: 'Altor - Home', user: req.user, eMessage: messages});
+                res.render('pages/index', {title: 'Readem - Home', user: req.user, eMessage: messages});
             })
         }
         else
